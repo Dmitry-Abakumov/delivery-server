@@ -58,7 +58,7 @@ const addSchema = Joi.object({
     "any.required": `missing required totalPrice field`,
   }),
 });
-const Order = model("contact", orderSchema);
+const Order = model("order", orderSchema);
 
 const schemas = {
   addSchema,
