@@ -18,6 +18,12 @@ const orderSchema = new Schema(
     address: {
       type: String,
     },
+    order: {
+      type: Array,
+    },
+    totalPrice: {
+      type: Number,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -39,14 +45,20 @@ const addSchema = Joi.object({
   }),
   order: Joi.array().items(
     Joi.object({
-      item: Joi.string().required().messages({
-        "any.required": `missing required item field`,
+      name: Joi.string().required().messages({
+        "any.required": `missing required name field`,
       }),
       amount: Joi.number().required().messages({
         "any.required": `missing required amount field`,
       }),
       price: Joi.number().required().messages({
         "any.required": `missing required price field`,
+      }),
+      restourant: Joi.string().required().messages({
+        "any.required": `missing required restourant field`,
+      }),
+      total: Joi.number().required().messages({
+        "any.required": `missing required total field`,
       }),
     })
       .required()
@@ -58,6 +70,7 @@ const addSchema = Joi.object({
     "any.required": `missing required totalPrice field`,
   }),
 });
+
 const Order = model("order", orderSchema);
 
 const schemas = {
