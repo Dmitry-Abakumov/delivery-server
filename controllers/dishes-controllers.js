@@ -1,5 +1,7 @@
 const { ctrlWrapper } = require("../utils");
 
+const { HttpError } = require("../helpers");
+
 const { Dish } = require("../models/dish");
 
 const getAllDishes = async (req, res) => {
@@ -17,6 +19,8 @@ const getDishesByQuery = async (req, res) => {
 
   const data = await Dish.find({ restourant });
 
+  if (!data) throw HttpError(404, "Not found");
+
   res.status(200).json(data);
 };
 
@@ -25,13 +29,15 @@ const updateShoppingCart = async (req, res) => {
 
   const { shoppingCart } = await Dish.findById(id, "shoppingCart");
 
-  const result = await Dish.findByIdAndUpdate(
+  const data = await Dish.findByIdAndUpdate(
     id,
     { shoppingCart: !shoppingCart },
     { new: true }
   );
 
-  res.json(result);
+  if (!data) throw HttpError(404, "Not found");
+
+  res.json(data);
 };
 
 module.exports = {
