@@ -14,3 +14,5 @@
     https://marvelous-druid-0a66c4.netlify.app/
 
     Link to repository: https://github.com/Dmitry-Abakumov/delivery
+
+    Used technologies and libraries: Node.js, Express, Mongoose, MongoDB
