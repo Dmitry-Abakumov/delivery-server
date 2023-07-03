@@ -4,10 +4,6 @@ const { HttpError } = require("../helpers");
 
 const { Dish } = require("../models/dish");
 
-const getAllDishes = async (req, res) => {
-  res.status(200).json(await Dish.find());
-};
-
 const getShoppingCart = async (req, res) => {
   const shoppingcart = await Dish.find({ shoppingCart: true });
 
@@ -41,7 +37,6 @@ const updateShoppingCart = async (req, res) => {
 };
 
 module.exports = {
-  getAllDishes: ctrlWrapper(getAllDishes),
   updateShoppingCart: ctrlWrapper(updateShoppingCart),
   getDishesByQuery: ctrlWrapper(getDishesByQuery),
   getShoppingCart: ctrlWrapper(getShoppingCart),
